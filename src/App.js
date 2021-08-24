@@ -1,10 +1,10 @@
 import React from "react";
-
-import Products from "./components/Products/Products";
+import { Products, Navbar } from "./components";
 
 export default function App() {
   return (
     <div>
+      <Navbar />
       <Products />
     </div>
   );
