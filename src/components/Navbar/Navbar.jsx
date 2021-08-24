@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 
+import logo from "../../assets/img/logo.png";
 import useStyles from "./style";
 
 export default function Navbar() {
@@ -20,8 +21,8 @@ export default function Navbar() {
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography variant="h6" className={classes.title} color="inherit">
-            <img src="" alt="" className={classes.image} />
-            Shop
+            <img src={logo} alt="Moose Inc" className={classes.image} />
+            Moose Inc.
           </Typography>
           <div className={classes.grow} />
           <div className={classes.button}>
