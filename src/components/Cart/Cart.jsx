@@ -4,13 +4,20 @@ import { CartItem } from "../../components";
 import { Container, Typography, Grid, Button } from "@material-ui/core";
 import useStyles from "./styles";
 
-export default function Cart({ cart }) {
+export default function Cart({
+  cart,
+  handleUpdateCartQty,
+  handleRemoveFromCart,
+  handleEmptyCart,
+}) {
   const classes = useStyles();
 
   const EmptyCart = () => (
     <Typography variant="subtitle1">
       You have no items in your cart.{" "}
-      <Link className={classes.link}>Start shopping!</Link>
+      <Link to="/" className={classes.link}>
+        Start shopping!
+      </Link>
     </Typography>
   );
 
@@ -19,7 +26,11 @@ export default function Cart({ cart }) {
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
           <Grid item xs={12} sm={4} key={item.id}>
-            <CartItem item={item} />
+            <CartItem
+              item={item}
+              handleUpdateCartQty={handleUpdateCartQty}
+              handleRemoveFromCart={handleRemoveFromCart}
+            />
           </Grid>
         ))}
       </Grid>
@@ -34,6 +45,7 @@ export default function Cart({ cart }) {
             type="button"
             variant="contained"
             color="secondary"
+            onClick={handleEmptyCart}
           >
             Empty Cart
           </Button>
