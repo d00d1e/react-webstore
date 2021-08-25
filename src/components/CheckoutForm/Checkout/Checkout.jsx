@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { commerce } from "../../../lib/commerce";
 
 import { AddressForm, PaymentForm } from "../../../components";
 
@@ -16,11 +17,33 @@ import useStyles from "./styles";
 
 const steps = ["Shipping Address", "Payment details"];
 
-export default function Checkout() {
-  const [activeStep, setActiveStep] = useState(2);
+export default function Checkout({ cart }) {
+  const [activeStep, setActiveStep] = useState(0);
+  const [checkoutToken, setCheckoutToken] = useState(null);
   const classes = useStyles();
 
-  const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+  useEffect(() => {
+    const generateToken = async () => {
+      if (cart.id) {
+        try {
+          const token = await commerce.checkout.generateToken(cart.id, {
+            type: "cart",
+          });
+          console.log(token);
+          setCheckoutToken(token);
+        } catch (error) {}
+      }
+    };
+
+    generateToken();
+  }, [cart]);
+
+  const Form = () =>
+    activeStep === 0 ? (
+      <AddressForm checkoutToken={checkoutToken} />
+    ) : (
+      <PaymentForm />
+    );
 
   const Confirmation = () => <div>Confirmation</div>;
 
@@ -39,7 +62,11 @@ export default function Checkout() {
               </Step>
             ))}
           </Stepper>
-          {activeStep === steps.length ? <Confirmation /> : <Form />}
+          {activeStep === steps.length ? (
+            <Confirmation />
+          ) : (
+            checkoutToken && <Form />
+          )}
         </Paper>
       </main>
     </>
