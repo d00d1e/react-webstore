@@ -22,8 +22,8 @@ export default function CartItem({ item }) {
         className={classes.media}
       />
       <CardContent className={classes.cardContent}>
-        <Typography variant="h4">{item.name}</Typography>
-        <Typography variant="h5">
+        <Typography variant="h5">{item.name}</Typography>
+        <Typography variant="h6">
           {item.line_total.formatted_with_symbol}
         </Typography>
       </CardContent>

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { commerce } from "./lib/commerce";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+import { commerce } from "./lib/commerce";
 import { Products, Navbar, Cart } from "./components";
-import { useState } from "react";
 
 export default function App() {
   const [products, setProducts] = useState([]);
@@ -27,13 +27,19 @@ export default function App() {
     fetchCart();
   }, []);
 
-  console.log(cart);
-
   return (
-    <div>
-      <Navbar totalItems={cart.total_items} />
-      {/* <Products products={products} onAddToCart={handleAddToCart} /> */}
-      <Cart cart={cart} />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Navbar totalItems={cart.total_items} />
+        <Switch>
+          <Route exact path="/">
+            <Products products={products} onAddToCart={handleAddToCart} />
+          </Route>
+          <Route exact path="/cart" component={Cart}>
+            <Cart cart={cart} />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
