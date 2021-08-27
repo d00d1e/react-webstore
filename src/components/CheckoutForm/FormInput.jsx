@@ -2,7 +2,7 @@ import React from "react";
 import { useFormContext, Controller } from "react-hook-form";
 import { TextField, Grid } from "@material-ui/core";
 
-export default function FormInput({ name, label, required }) {
+export default function FormInput({ name, label }) {
   const { control } = useFormContext();
 
   return (
@@ -10,9 +10,8 @@ export default function FormInput({ name, label, required }) {
       <Controller
         as={TextField}
         control={control}
-        render={() => (
-          <TextField name={name} label={label} required={required} fullWidth />
-        )}
+        render={() => <TextField name={name} label={label} fullWidth />}
+        required
       />
     </Grid>
   );

@@ -49,7 +49,7 @@ export default function Checkout({ cart }) {
 
   return (
     <>
-      <div className={classes.toolBar} />
+      <div className={classes.toolbar} />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography variant="h4" align="center">
