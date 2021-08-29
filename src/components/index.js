@@ -6,3 +6,4 @@ export { default as Checkout } from "./CheckoutForm/Checkout/Checkout";
 export { default as AddressForm } from "./CheckoutForm/AddressForm";
 export { default as PaymentForm } from "./CheckoutForm/PaymentForm";
 export { default as FormInput } from "./CheckoutForm/FormInput";
+export { default as Review } from "./CheckoutForm/Review";

@@ -65,10 +65,6 @@ export default function AddressForm({ checkoutToken, next }) {
     setShippingOption(options[0].id);
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-  };
-
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
   }, []);
@@ -93,7 +89,7 @@ export default function AddressForm({ checkoutToken, next }) {
       </Typography>
       <FormProvider {...methods}>
         <form
-          onSubmit={methods.handleFormSubmit((data) =>
+          onSubmit={methods.handleSubmit((data) =>
             next({
               ...data,
               shippingCountry,
@@ -164,7 +160,7 @@ export default function AddressForm({ checkoutToken, next }) {
             >
               Back to Cart
             </Button>
-            <Button variant="contained" color="primary">
+            <Button type="submit" variant="contained" color="primary">
               Next
             </Button>
           </div>

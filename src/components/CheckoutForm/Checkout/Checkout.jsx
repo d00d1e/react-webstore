@@ -49,9 +49,17 @@ export default function Checkout({ cart }) {
 
   const Form = () =>
     activeStep === 0 ? (
-      <AddressForm checkoutToken={checkoutToken} next={next} />
+      <AddressForm
+        checkoutToken={checkoutToken}
+        next={next}
+        nextStep={nextStep}
+      />
     ) : (
-      <PaymentForm shippingData={shippingData} />
+      <PaymentForm
+        shippingData={shippingData}
+        checkoutToken={checkoutToken}
+        backStep={backStep}
+      />
     );
 
   const Confirmation = () => <div>Confirmation</div>;
