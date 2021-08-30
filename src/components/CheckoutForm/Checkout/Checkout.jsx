@@ -17,7 +17,7 @@ import useStyles from "./styles";
 
 const steps = ["Shipping Address", "Payment details"];
 
-export default function Checkout({ cart }) {
+export default function Checkout({ cart, order, onCaptureCheckout, error }) {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
@@ -59,6 +59,7 @@ export default function Checkout({ cart }) {
         shippingData={shippingData}
         checkoutToken={checkoutToken}
         backStep={backStep}
+        onCaptureCheckout={onCaptureCheckout}
       />
     );
 
